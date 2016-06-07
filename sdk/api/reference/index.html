@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+
+  
+  <meta name="viewport" content="width=1040px, user-scalable=yes">
+
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Growthbeat API | Growthbeat | docs">
+  <meta property="og:url" content="http://support.growthbeat.com/sdk/api/reference/">
+  <meta property="og:description" content="Growthbeat API について説明します">
+  
+  <meta property="article:author" content="" />
+  <meta property="fb:app_id" content="" />
+  <meta property="og:site_name" content="Growthbeat | docs">
+
+  <title>
+      
+        Growthbeat API | Growthbeat | docs
+      
+  </title>
+
+  
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="http://support.growthbeat.com/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
+</head>
+
+<body>
+
+
+
+  
+
+
+
+
+  
+
+
+<div class="wrapper">
+
+
+
+<header class="navbar-header" role="banner">
+  <div class="container">
+    <nav class="header-nav">
+      <h1 class="logo">
+        <a class="link"href="https://growthbeat.com/">
+          <img src="http://support.growthbeat.com/img/lp_growthbeat_logo_big.png" alt="Growthbeat logo">
+        </a>
+      </h1>
+
+      <div class="search">
+        <input id="algolia-search" type="text" placeholder="サポートページを検索">
+      </div>
+      <div class="inquiry">
+        <a class="link" href="https://growthbeat.com/inquiry">お問い合わせ</a>
+      </div>
+      <div class="login">
+        <a class="link" href="https://growthbeat.com/">Growthbeat</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="navbar-subheader">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li class="item">
+        <a class="link" href="http://support.growthbeat.com/">サポートページ</a>
+      </li>
+      <li class="item">
+        <a class="link" href="http://support.growthbeat.com/sdk/">SDKドキュメント</a>
+      </li>
+      
+        <li class="item"><a class="link">APIリファレンス</a></li>
+      
+      
+      
+    </ul>
+  </div>
+</section>
+
+
+
+<div class="content">
+  <div class="container">
+
+<div class="page">
+  <h1 class="title">
+    
+      APIリファレンス
+　　 
+    <span class="updated">最終更新日 Fri, Mar 25, 2016</span>
+  </h1>
+  <a class="edit" href="https://github.com/growthbeat/docs/blob/master/content/sdk/api/reference.md">Edit on GitHub</a>
+</div>
+
+
+<section class="row markdown">
+    <div class="column column-sidebar">
+      <nav id="TableOfContents">
+<ul>
+<li><a href="#growth-push-api">Growth Push API</a>
+<ul>
+<li><a href="#clients">Clients</a>
+<ul>
+<li><a href="#get-client">Get Client</a></li>
+</ul></li>
+<li><a href="#notifications">Notifications</a>
+<ul>
+<li><a href="#get-notifications">Get Notifications</a></li>
+<li><a href="#create-notification">Create Notification</a></li>
+</ul></li>
+<li><a href="#segments">Segments</a>
+<ul>
+<li><a href="#create-segment">Create Segment</a></li>
+</ul></li>
+<li><a href="#tags">Tags</a>
+<ul>
+<li><a href="#get-tag">Get Tag</a></li>
+</ul></li>
+<li><a href="#tagclients">TagClients</a>
+<ul>
+<li><a href="#get-tagclients-by-tag-id">Get TagClients by Tag ID</a></li>
+<li><a href="#get-tagclients-by-client-id">Get TagClients by Client ID</a></li>
+<li><a href="#create-tagclient-by-device-token">Create TagClient by Device Token</a></li>
+<li><a href="#create-tagclient-by-client-id">Create TagClient by Client ID</a></li>
+</ul></li>
+<li><a href="#event">Event</a>
+<ul>
+<li><a href="#add-event-to-client-by-device-token">Add Event to Client by Device Token</a></li>
+<li><a href="#add-tag-to-client-by-client-id">Add Tag to Client by Client ID</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#growthbeat-api">Growthbeat API</a>
+<ul>
+<li><a href="#accounts">Accounts</a>
+<ul>
+<li><a href="#get-account">Get Account</a></li>
+</ul></li>
+<li><a href="#applications">Applications</a>
+<ul>
+<li><a href="#get-application">Get Application</a></li>
+<li><a href="#get-applications">Get Applications</a></li>
+<li><a href="#create-application">Create Application</a></li>
+</ul></li>
+<li><a href="#credentials">Credentials</a>
+<ul>
+<li><a href="#get-credentials">Get Credentials</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+    <div class="column column-main">
+      <div class="typeset">
+        
+
+<h1 id="growth-push-api">Growth Push API</h1>
+
+<h2 id="clients">Clients</h2>
+
+<p>デバイス情報に関するAPI</p>
+
+<p>Client Objectは以下の形式です。Growthbeat デバイスID(String)、デバイスID(Int)は異なるので注意してください。</p>
+
+<p><strong>Client Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">growthbeatClientId</td>
+<td align="left">String</td>
+<td align="left">Growthbeat デバイスID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">growthbeatApplicationId</td>
+<td align="left">String</td>
+<td align="left">Grwothbeat アプリケーションID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">token</td>
+<td align="left">String</td>
+<td align="left">デバイストークン</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">os</td>
+<td align="left">String</td>
+<td align="left">ios/android</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">status</td>
+<td align="left">String</td>
+<td align="left">デバイスステータス</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">environment</td>
+<td align="left">String</td>
+<td align="left">development/production</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">id</td>
+<td align="left">Int</td>
+<td align="left">デバイスID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">applicationId</td>
+<td align="left">Int</td>
+<td align="left">アプリケーションID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">code</td>
+<td align="left">String</td>
+<td align="left">デバイスのコード</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-client">Get Client</h3>
+
+<p>デバイスを取得します。</p>
+
+<p><strong>GET：</strong> <a href="https://api.growthpush.com/3/clients">https://api.growthpush.com/3/clients</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">token</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">デバイストークン</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;applicationId=${APPLICATION_ID}&quot; \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    --data &quot;token=${DEVICE_TOKEN}&quot; \
+    https://api.growthpush.com/3/clients
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">Client Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    &quot;applicationId&quot;: APPLICATION_ID,
+    &quot;code&quot;: &quot;DEVICE_CODE&quot;,
+    &quot;created&quot;: &quot;2015-11-24 04:51:43&quot;,
+    &quot;environment&quot;: &quot;development&quot;,
+    &quot;growthbeatApplicationId&quot;: &quot;APPLICATION_ID&quot;,
+    &quot;growthbeatClientId&quot;: &quot;CLIENT_ID&quot;,
+    &quot;id&quot;: DEVICE_ID,
+    &quot;os&quot;: &quot;ios&quot;,
+    &quot;status&quot;: &quot;active&quot;,
+    &quot;token&quot;: &quot;DEVICE_TOKEN&quot;
+}
+</code></pre>
+
+<h2 id="notifications">Notifications</h2>
+
+<p>プッシュ通知に関するAPI</p>
+
+<p>Notification Objectは以下の形式です。</p>
+
+<p><strong>Notification Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">Int</td>
+<td align="left">プッシュ通知ID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">trials</td>
+<td align="left">Collection</td>
+<td align="left">通知内容オブジェクト</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">applicationId</td>
+<td align="left">Int</td>
+<td align="left">アプリケーションID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">automationId</td>
+<td align="left">Int</td>
+<td align="left">自動配信ID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">segmentId</td>
+<td align="left">Int</td>
+<td align="left">セグメントID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">segment</td>
+<td align="left">Collection</td>
+<td align="left">セグメントオブジェクト</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">tagId</td>
+<td align="left">Int</td>
+<td align="left">タグID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">status</td>
+<td align="left">String</td>
+<td align="left">配信のステータス</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">speed</td>
+<td align="left">Int</td>
+<td align="left">配信間隔</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-notifications">Get Notifications</h3>
+
+<p>プッシュ通知のリストを取得します。</p>
+
+<p><strong>GET：</strong> <a href="https://api.growthpush.com/3/notifications">https://api.growthpush.com/3/notifications</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">page</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left">ページ数</td>
+</tr>
+
+<tr>
+<td align="left">limit</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left">最大取得件数</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;applicationId=${APPLICATION_ID}&quot; \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    https://api.growthpush.com/3/notifications
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Collection</td>
+<td align="left">Notification Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+    {
+        &quot;applicationId&quot;: APPLICATION_ID,
+        &quot;automationId&quot;: null,
+        &quot;created&quot;: &quot;2015-11-24 05:43:07&quot;,
+        &quot;id&quot;: NOTIFICATION_ID,
+        &quot;segment&quot;: {
+            &quot;applicationId&quot;: APPLICATION_ID,
+            &quot;created&quot;: &quot;2015-11-24 05:17:11&quot;,
+            &quot;id&quot;: SEGMENT_ID,
+            &quot;invisible&quot;: false,
+            &quot;modified&quot;: &quot;2015-11-24 05:22:25&quot;,
+            &quot;name&quot;: &quot;SEGMENT_NAME&quot;,
+            &quot;query&quot;: &quot;SEGMENT_QUERY&quot;,
+            &quot;size&quot;: 1
+        },
+        &quot;segmentId&quot;: SEGMENT_ID,
+        &quot;speed&quot;: null,
+        &quot;status&quot;: &quot;completed&quot;,
+        &quot;tagId&quot;: TAG_ID,
+        &quot;trials&quot;: [
+            {
+                &quot;automationTrialId&quot;: null,
+                &quot;badge&quot;: true,
+                &quot;extra&quot;: &quot;{&quot;growthpush&quot;:{&quot;notificationId&quot;:NOTIFICATION_ID}}&quot;,
+                &quot;id&quot;: 570617,
+                &quot;notificationId&quot;: NOTIFICATION_ID,
+                &quot;scheduled&quot;: &quot;2015-11-24 05:43:00&quot;,
+                &quot;sound&quot;: true,
+                &quot;status&quot;: &quot;completed&quot;,
+                &quot;text&quot;: &quot;PUSH_TEXT&quot;
+            }
+        ]
+    },
+    ....
+]
+</code></pre>
+
+<h3 id="create-notification">Create Notification</h3>
+
+<p>プッシュ通知を作成します。</p>
+
+<p><strong>POST：</strong> <a href="https://api.growthpush.com/3/notifications">https://api.growthpush.com/3/notifications</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">text</td>
+<td align="left">Int</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">配信メッセージ</td>
+</tr>
+
+<tr>
+<td align="left">query</td>
+<td align="left">String</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">配信対象の絞込クエリ(JSON) <a href="http://faq.growthbeat.com/article/96-notification-api">クエリについて</a></td>
+</tr>
+
+<tr>
+<td align="left">sound</td>
+<td align="left">Boolean</td>
+<td align="left">NO</td>
+<td align="left">false</td>
+<td align="left">true<br>false</td>
+<td align="left">Push通知時のサウンドを鳴らすか</td>
+</tr>
+
+<tr>
+<td align="left">badge</td>
+<td align="left">Boolean</td>
+<td align="left">NO</td>
+<td align="left">false</td>
+<td align="left">true<br>false</td>
+<td align="left">プッシュ通知時にバッヂを付与するか</td>
+</tr>
+
+<tr>
+<td align="left">extra</td>
+<td align="left">String</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">カスタムフイールド(JSON)</td>
+</tr>
+
+<tr>
+<td align="left">attachNotificationId</td>
+<td align="left">Boolean</td>
+<td align="left">NO</td>
+<td align="left">false</td>
+<td align="left">true<br>false</td>
+<td align="left">通知IDをペイロードに含めるか</td>
+</tr>
+
+<tr>
+<td align="left">duration</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">push配信の生存時間(ミリ秒)</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    --data &quot;applicationId=${APPLICATION_ID}&quot; \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    --data-urlencode &quot;text=${TEXT}&quot; \
+    https://api.growthpush.com/3/notifications
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left">jobId</td>
+<td align="left">String</td>
+<td align="left">ランダムに生成された値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    &quot;jobId&quot;:&quot;a0f9a40b-f013-4693-a5b1-3baf726fd4f3&quot;
+}
+</code></pre>
+
+<p><em>セグメントクエリ作成方法については <a href="http://faq.growthbeat.com/article/96-notification-api">Notification API クエリ指定方法</a> を参照してください</em></p>
+
+<h2 id="segments">Segments</h2>
+
+<h3 id="create-segment">Create Segment</h3>
+
+<p>セグメントを作成します。</p>
+
+<p><strong>POST:</strong> <a href="http://api.growthpush.com/3/segments">http://api.growthpush.com/3/segments</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">セグメント名</td>
+</tr>
+
+<tr>
+<td align="left">query</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">クエリ</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    -d &quot;applicationId=${APPLICATION_ID}&quot; \
+    -d &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    -d &quot;name=${SEGMENT_NAME}&quot; \
+    -d &quot;query=${SEGMENT_QUERY}&quot; \
+    http://api.growthpush.com/3/segments
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">id</td>
+<td align="left">String</td>
+<td align="left">セグメントID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">applicationId</td>
+<td align="left">Int</td>
+<td align="left">アプリケーションID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">セグメント名</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">query</td>
+<td align="left">String</td>
+<td align="left">セグメントクエリ</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">size</td>
+<td align="left">Int</td>
+<td align="left">セグメント対象デバイス数</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">invisible</td>
+<td align="left">Boolean</td>
+<td align="left">セグメント状態</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">modified</td>
+<td align="left">String</td>
+<td align="left">更新日</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    &quot;id&quot;: SEGMENT_ID,
+    &quot;applicationId&quot;: APPLICATION_ID,
+    &quot;name&quot;: &quot;SEGMENT_ID&quot;,
+    &quot;query&quot;:&quot;SEGMENT_QUERY&quot;,
+    &quot;size&quot;: SEGMENT_SIZE,
+    &quot;invisible&quot;:false,
+    &quot;modified&quot;:&quot;2014-08-27 17:27:03&quot;,
+    &quot;created&quot;:&quot;2014-08-27 17:27:03&quot;
+}
+</code></pre>
+
+<p><em>セグメントクエリ作成方法については <a href="http://faq.growthbeat.com/article/96-notification-api">Notification API クエリ指定方法</a> を参照してください</em></p>
+
+<h2 id="tags">Tags</h2>
+
+<h3 id="get-tag">Get Tag</h3>
+
+<p>タグを取得します。</p>
+
+<p><strong>GET:</strong> <a href="https://api.growthpush.com/3/tags">https://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグ名</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;applicationId=${APPLICATION_ID}&quot; \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    --data-urlencode &quot;name=${TAG_NAME}&quot; \
+    https://api.growthpush.com/3/tags
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left">id</td>
+<td align="left">Int</td>
+<td align="left">タグID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">アプリケーションID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">type</td>
+<td align="left">String</td>
+<td align="left">タグタイプ（custom, notification, automation）</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">タグ名</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">invisible</td>
+<td align="left">Boolean</td>
+<td align="left">タグ状態</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+  &quot;id&quot;: TAG_ID,
+  &quot;applicationId&quot;: APPLICATION_ID,
+  &quot;type&quot;: &quot;custom&quot;,
+  &quot;name&quot;: &quot;TAG_NAME&quot;,
+  &quot;invisible&quot;: false,
+  &quot;created&quot;: &quot;2015-11-25 05:25:44&quot;
+}
+</code></pre>
+
+<h2 id="tagclients">TagClients</h2>
+
+<p>TagClient Objectは以下の形式です。</p>
+
+<p><strong>TagClient Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">tagId</td>
+<td align="left">String</td>
+<td align="left">タグID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">clientId</td>
+<td align="left">Int</td>
+<td align="left">デバイスID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">タグ値</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-tagclients-by-tag-id">Get TagClients by Tag ID</h3>
+
+<p>タグID指定でTagClientのリストを取得します。タグに紐づくデバイスを取得する場合に使用します。</p>
+
+<p><strong>GET:</strong> <a href="https://api.growthpush.com/3/tags">https://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">tagId</td>
+<td align="left">Int</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグID</td>
+</tr>
+
+<tr>
+<td align="left">limit</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left">最大取得数</td>
+</tr>
+
+<tr>
+<td align="left">exclusiveClientId</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">オフセットデバイスID</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    --data &quot;tagId=${TAG_ID}&quot; \
+    https://api.growthpush.com/3/tags
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Collection</td>
+<td align="left">TagClient Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+  {
+    &quot;tagId&quot;: TAG_ID,
+    &quot;clientId&quot;: CLIENT_ID,
+    &quot;value&quot;: &quot;TAG_VALUE&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-tagclients-by-client-id">Get TagClients by Client ID</h3>
+
+<p>Growthbeat デバイスID指定でTagClientのリストを取得します。デバイスに紐づくタグを取得する場合に使用します。</p>
+
+<p><strong>GET:</strong> <a href="https://api.growthpush.com/3/tags">https://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">clientId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Growthbeat デバイスID</td>
+</tr>
+
+<tr>
+<td align="left">limit</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left">最大取得数</td>
+</tr>
+
+<tr>
+<td align="left">exclusiveTagId</td>
+<td align="left">Int</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">オフセットタグID</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    --data &quot;clientId=${CLIENT_ID}&quot; \
+    https://api.growthpush.com/3/tags
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Collection</td>
+<td align="left">TagClient Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+  {
+    &quot;tagId&quot;: TAG_ID,
+    &quot;clientId&quot;: CLIENT_ID,
+    &quot;value&quot;: &quot;TAG_VALUE&quot;
+  }
+]
+</code></pre>
+
+<h3 id="create-tagclient-by-device-token">Create TagClient by Device Token</h3>
+
+<p>デバイストークン指定でタグにデバイスを紐付けます。タグが存在しない場合、タグの作成も行われます。</p>
+
+<p><strong>POST:</strong> <a href="http://api.growthpush.com/3/tags">http://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">token</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">デバイストークン</td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグ名</td>
+</tr>
+
+<tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグ値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    -d &quot;applicationId=${APPLICATION_ID}&quot; \
+    -d &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    -d &quot;token=${DEVICE_TOKEN}&quot; \
+    -d &quot;name=${TAG_NAME}&quot; \
+    -d &quot;value=${TAG_VALUE}&quot; \
+    http://api.growthpush.com/3/tags
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">TagClient</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+  &quot;tagId&quot;: TAG_ID,
+  &quot;clientId&quot;: CLIENT_ID,
+  &quot;value&quot;: &quot;TAG_VALUE&quot;
+}
+</code></pre>
+
+<h3 id="create-tagclient-by-client-id">Create TagClient by Client ID</h3>
+
+<p>Growthbeat デバイスID指定でタグにデバイスを紐付けます。タグが存在しない場合、タグの作成も行われます。</p>
+
+<p><strong>POST:</strong> <a href="http://api.growthpush.com/3/tags">http://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Nam</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">clientId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Growthbeat デバイスID</td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグ名</td>
+</tr>
+
+<tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">NO</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">タグ値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    -d &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    -d &quot;clientId=${CLIENT_ID}&quot; \
+    -d &quot;name=${TAG_NAME}&quot; \
+    -d &quot;value=${TAG_VALUE}&quot; \
+    http://api.growthpush.com/3/tags
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">TagClient</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+  &quot;tagId&quot;: TAG_ID,
+  &quot;clientId&quot;: CLIENT_ID,
+  &quot;value&quot;: &quot;TAG_VALUE&quot;
+}
+</code></pre>
+
+<h2 id="event">Event</h2>
+
+<h3 id="add-event-to-client-by-device-token">Add Event to Client by Device Token</h3>
+
+<p>デバイストークン指定でデバイスにタグを付与します。</p>
+
+<p><strong>POST:</strong> <a href="http://api.growthpush.com/3/tags">http://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">token</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">デバイストークン</td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">イベント名</td>
+</tr>
+
+<tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left">null</td>
+<td align="left">YES</td>
+<td align="left">イベント値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    -d &quot;applicationId=${APPLICATION_ID}&quot; \
+    -d &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    -d &quot;token=${DEVICE_TOKEN}&quot; \
+    -d &quot;name=${EVENT_NAME}&quot; \
+    -d &quot;value=${EVENT_VALUE}&quot; \
+    http://api.growthpush.com/3/events
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left">goalId</td>
+<td align="left">String</td>
+<td align="left">ゴールID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">timestamp</td>
+<td align="left">long</td>
+<td align="left">イベント発生時間</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">clientId</td>
+<td align="left">Int</td>
+<td align="left">デバイスID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">タグ値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+  &quot;goalId&quot;: GOAL_ID,
+  &quot;timestamp&quot;: TIMESTAMP,
+  &quot;clientId&quot;: CLIENT_ID,
+  &quot;value&quot;: &quot;TAG_VALUE&quot;
+}
+</code></pre>
+
+<h3 id="add-tag-to-client-by-client-id">Add Tag to Client by Client ID</h3>
+
+<p>デバイスID指定でデバイスにタグを付与します。</p>
+
+<p><strong>POST:</strong> <a href="http://api.growthpush.com/3/tags">http://api.growthpush.com/3/tags</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Nam</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+
+<tr>
+<td align="left">clientId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Growthbeat デバイスID</td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">イベント名</td>
+</tr>
+
+<tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">イベント値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+    -H 'Accept: application/json' \
+    -d &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    -d &quot;clientId=${CLIENT_ID}&quot; \
+    -d &quot;name=${EVENT_NAME}&quot; \
+    -d &quot;value=${EVENT_VALUE}&quot; \
+    http://api.growthpush.com/3/events
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left">goalId</td>
+<td align="left">String</td>
+<td align="left">ゴールID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">timestamp</td>
+<td align="left">long</td>
+<td align="left">イベント発生時間</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">clientId</td>
+<td align="left">Int</td>
+<td align="left">デバイスID</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">タグ値</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+  &quot;goalId&quot;: GOAL_ID,
+  &quot;timestamp&quot;: TIMESTAMP,
+  &quot;clientId&quot;: CLIENT_ID,
+  &quot;value&quot;: &quot;TAG_VALUE&quot;
+}
+</code></pre>
+
+<h1 id="growthbeat-api">Growthbeat API</h1>
+
+<h2 id="accounts">Accounts</h2>
+
+<p>Account Objectは以下の形式です。</p>
+
+<p><strong>Account Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">String</td>
+<td align="left">アカウントID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">アカウント名</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-account">Get Account</h3>
+
+<p>アカウントを取得します</p>
+
+<p><strong>GET：</strong> <a href="https://api.growthbeat.com/1/accounts/${ACCOUNT_ID">https://api.growthbeat.com/1/accounts/${ACCOUNT_ID</a>}</p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">accountId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">アカウントID</td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+    -H 'Accept: application/json' \
+    -G \
+    --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+    https://api.growthpush.com/1/accounts/${ACCOUNT_ID}
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">Account Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    created: &quot;2014-10-02T02:20:03+0000&quot;,
+    name: &quot;NAME&quot;,
+    id: &quot;ACCOUNT_ID&quot;
+}
+</code></pre>
+
+<h2 id="applications">Applications</h2>
+
+<p>Application Objectは以下の形式です。</p>
+
+<p><strong>Application Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">String</td>
+<td align="left">Growthbeat アプリケーションID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">アプリケーション名</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-application">Get Application</h3>
+
+<p>アプリケーションを取得します</p>
+
+<p><strong>GET：</strong> <a href="https://api.growthbeat.com/1/applications/${APPLICATION_ID">https://api.growthbeat.com/1/applications/${APPLICATION_ID</a>}</p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">applicationId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat アプリケーションID</a></td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+  -H 'Accept: application/json' \
+  -G \
+  --data &quot;credentzcialId=${CREDENTIAL_ID}&quot; \
+  https://api.growthbeat.com/1/applications/${APPLICATION_ID}
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">Application Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    &quot;name&quot;:&quot;APPLICATION_NAME&quot;,
+    &quot;id&quot;:&quot;APPLICATION_ID&quot;,
+    &quot;created&quot;:&quot;2014-06-26T06:44:55+0000&quot;
+}
+</code></pre>
+
+<h3 id="get-applications">Get Applications</h3>
+
+<p><strong>GET：</strong> <a href="https://api.growthbeat.com/1/applications">https://api.growthbeat.com/1/applications</a></p>
+
+<p>アプリケーションのリストを取得します。</p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">accountId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">アカウントID</td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+  -H 'Accept: application/json' \
+  -G \
+  --data &quot;accountId=${ACCOUNT_ID}&quot; \
+  --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+  https://api.growthbeat.com/1/applications
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Collection</td>
+<td align="left">Application Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+    {
+        &quot;created&quot;: &quot;2014-06-26T06:44:55+0000&quot;,
+        &quot;id&quot;: &quot;APPLICATION_ID&quot;,
+        &quot;name&quot;: &quot;APPLICATION_NAME&quot;
+    }
+]
+</code></pre>
+
+<h3 id="create-application">Create Application</h3>
+
+<p>アプリケーションを作成します。</p>
+
+<p><strong>POST：</strong> <a href="https://api.growthbeat.com/1/applications">https://api.growthbeat.com/1/applications</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">アプリケーション名</td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://faq.growthbeat.com/article/130-growthbeat-id">Growthbeat クレデンシャルID</a></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X POST \
+  -H 'Accept: application/json' \
+  --data &quot;name=${APPLICATION_NAME}&quot; \
+  --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+  --data-urlencode &quot;text=${TEXT}&quot; \
+  https://api.growthpush.com/3/notifications
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Object</td>
+<td align="left">Application Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    &quot;name&quot;:&quot;APPLICATION_NAME&quot;,
+    &quot;id&quot;:&quot;APPLICATION_ID&quot;,
+    &quot;created&quot;:&quot;2014-08-26T02:23:08+0000&quot;
+}
+</code></pre>
+
+<h2 id="credentials">Credentials</h2>
+
+<p>Credential Objectは以下の形式です。</p>
+
+<p><strong>Credential Object</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">String</td>
+<td align="left">Growthbeat クレデンシャルID</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">created</td>
+<td align="left">String</td>
+<td align="left">作成日</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">account</td>
+<td align="left">Object</td>
+<td align="left">Account Object</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-credentials">Get Credentials</h3>
+
+<p>クレデンシャルのリストを取得します。</p>
+
+<p><strong>GET：</strong> <a href="https://api.growthbeat.com/1/credentials">https://api.growthbeat.com/1/credentials</a></p>
+
+<p><strong>Request</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Required</th>
+<th align="left">Default</th>
+<th align="left">Options</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">session</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">.growthbeat.com sessionId</td>
+</tr>
+
+<tr>
+<td align="left">credentialId</td>
+<td align="left">String</td>
+<td align="left">YES</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Growthbeat クレデンシャルID</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-bash">curl -X GET \
+  -H 'Accept: application/json' \
+  -G \
+  --data &quot;sessionId=${SESSION}&quot; \
+  --data &quot;credentialId=${CREDENTIAL_ID}&quot; \
+  https://api.growthbeat.com/1/credentials
+</code></pre>
+
+<p><strong>Response</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Response</th>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Header</td>
+<td align="left">Status</td>
+<td align="left">Int</td>
+<td align="left">200</td>
+</tr>
+
+<tr>
+<td align="left">Body</td>
+<td align="left"></td>
+<td align="left">Collection</td>
+<td align="left">Credential Object</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+    {
+        &quot;id&quot;:&quot;CREDENTIAL&quot;,
+        &quot;created&quot;:&quot;2014-06-26T06:44:55+0000&quot;,
+        &quot;account&quot;:{
+            &quot;name&quot;:&quot;PARENT_ACCOUNT_NAME&quot;,
+            &quot;id&quot;:&quot;PARENT_ACCOUNT_ID&quot;,
+            &quot;created&quot;:&quot;2014-06-26T06:44:55+0000&quot;
+        }
+    }
+]
+</code></pre>
+
+      </div>
+    </div>
+</section>
+
+
+  </div>
+</div>
+
+
+<footer class="footer">
+  <small class="copyright">Designed by SIROK</small>
+</footer>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="http://support.growthbeat.com/js/sirok-scrollspy.js"></script>
+<script>
+$(function() {
+  $('pre code, code').each(function(i, block) {
+    hljs.highlightBlock(block)
+  });
+
+  var sidebar = $('.column-sidebar');
+  var offset = sidebar.offset();
+
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > offset.top - 20) {
+      sidebar.addClass('fixed');
+    } else {
+      sidebar.removeClass('fixed');
+    }
+  });
+
+  sidebar.find('ul').addClass('spy-nav');
+
+  $(document.body).scrollspy({
+    target: '#TableOfContents',
+  });
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+ apiKey: '11fef466694af89257b9dc61a7b7fa20',
+ indexName: 'growthbeat',
+ inputSelector: '#algolia-search'
+});
+</script>
+</body>
+</html>
+
+</div>
+</body>
+</html>
